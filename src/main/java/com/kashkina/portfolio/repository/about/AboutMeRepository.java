@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AboutMeRepository extends JpaRepository<AboutMe, Long> {
+public interface AboutMeRepository extends JpaRepository<AboutMe, Integer> {
 
     Optional<AboutMe> findBySectionKey(String sectionKey);
 }

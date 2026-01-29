@@ -8,8 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class TechStackItemDTO {
-    private Long id;
+    private Integer id;
     private String name;
     private Integer orderIndex;
-    private Long categoryId;
+    private Integer categoryId;
 }

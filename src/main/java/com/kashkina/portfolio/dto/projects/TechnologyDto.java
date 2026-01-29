@@ -1,7 +1,7 @@
 package com.kashkina.portfolio.dto.projects;
 
 public record TechnologyDto(
-        Long id,
+        Integer id,
         String name,
         String category
 ) {}

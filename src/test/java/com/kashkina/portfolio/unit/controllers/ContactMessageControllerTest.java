@@ -3,7 +3,11 @@ package com.kashkina.portfolio.unit.controllers;
 import com.kashkina.portfolio.controller.ContactMessageController;
 import com.kashkina.portfolio.dto.contact.ContactMessageDTO;
 import com.kashkina.portfolio.entity.contact.ContactMessage;
+import com.kashkina.portfolio.kafka.producer.VisitEventProducer;
+import com.kashkina.portfolio.repository.contact.ContactMessageRepository;
 import com.kashkina.portfolio.service.ContactMessageService;
+import com.kashkina.portfolio.service.EmailService;
+import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -16,11 +20,15 @@ class ContactMessageControllerTest {
 
     private ContactMessageController controller;
     private ContactMessageService service;
+    private ContactMessageRepository repository;
+    private EmailService emailService;
+    private VisitEventProducer visitEventProducer;
+    private HttpSession session;
 
     @BeforeEach
     void setUp() {
         service = mock(ContactMessageService.class); // creating a mock service
-        controller = new ContactMessageController(service); // Create a controller with a mock service
+        controller = new ContactMessageController(service, repository, emailService, visitEventProducer); // Create a controller with a mock service
     }
 
     @Test
@@ -33,7 +41,7 @@ class ContactMessageControllerTest {
 
         // We prepare the object that the service should return
         ContactMessage savedMessage = new ContactMessage();
-        savedMessage.setId(1L);
+        savedMessage.setId(1);
         savedMessage.setName(dto.getName());
         savedMessage.setEmail(dto.getEmail());
         savedMessage.setMessage(dto.getMessage());
@@ -42,7 +50,7 @@ class ContactMessageControllerTest {
         when(service.saveContactMessage(dto)).thenReturn(savedMessage);
 
         // Calling the controller method
-        ResponseEntity<?> response = controller.createContactMessage(dto);
+        ResponseEntity<?> response = controller.createContactMessage(dto, session);
 
         // Checking the status and response body
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -62,7 +70,7 @@ class ContactMessageControllerTest {
                 .thenThrow(new IllegalArgumentException("Name cannot be empty"));
 
         // Calling the controller method
-        ResponseEntity<?> response = controller.createContactMessage(dto);
+        ResponseEntity<?> response = controller.createContactMessage(dto, session);
 
         // Checking the status and error message
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
@@ -81,7 +89,7 @@ class ContactMessageControllerTest {
         // Setting up a mock: the service throws an unexpected error
         when(service.saveContactMessage(dto)).thenThrow(new RuntimeException("Database down"));
 
-        ResponseEntity<?> response = controller.createContactMessage(dto);
+        ResponseEntity<?> response = controller.createContactMessage(dto, session);
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals("An unexpected error occurred. Please try again later.", response.getBody());

@@ -15,7 +15,7 @@ public class ProjectScreenshot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "image_url", length = 500, nullable = false)
     private String imageUrl;

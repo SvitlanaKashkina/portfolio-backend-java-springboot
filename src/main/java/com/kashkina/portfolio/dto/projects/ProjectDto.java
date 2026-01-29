@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 public class ProjectDto {
 
-    private Long id;
+    private Integer id;
     private String title;
     private String shortDescription;
     private String fullDescription;

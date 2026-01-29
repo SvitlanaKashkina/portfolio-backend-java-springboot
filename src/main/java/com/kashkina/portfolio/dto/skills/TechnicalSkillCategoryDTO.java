@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 public class TechnicalSkillCategoryDTO {
 
-    private Long id;
+    private Integer id;
     private String name;
     private Integer orderIndex;
     private List<TechnicalSkillItemDTO> items;

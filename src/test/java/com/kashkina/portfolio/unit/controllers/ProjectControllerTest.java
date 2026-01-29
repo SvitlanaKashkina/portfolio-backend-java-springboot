@@ -5,7 +5,9 @@ import com.kashkina.portfolio.dto.projects.ProjectDto;
 import com.kashkina.portfolio.dto.projects.ProjectFeatureDto;
 import com.kashkina.portfolio.dto.projects.ProjectScreenshotDto;
 import com.kashkina.portfolio.dto.projects.TechnologyDto;
+import com.kashkina.portfolio.kafka.producer.VisitEventProducer;
 import com.kashkina.portfolio.service.ProjectService;
+import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,27 +21,29 @@ class ProjectControllerTest {
 
     private ProjectController controller;
     private ProjectService projectService;
+    private VisitEventProducer visitEventProducer;
+    private HttpSession session;
 
     @BeforeEach
     void setUp() {
         projectService = mock(ProjectService.class);
-        controller = new ProjectController(projectService);
+        controller = new ProjectController(projectService, visitEventProducer, session);
     }
 
     @Test
     void testGetProjects_Success() {
         // prepare Technologies, Features and Screenshots
-        TechnologyDto tech1 = new TechnologyDto(1L, "Java", "Backend");
-        TechnologyDto tech2 = new TechnologyDto(2L, "React", "Frontend");
+        TechnologyDto tech1 = new TechnologyDto(1, "Java", "Backend");
+        TechnologyDto tech2 = new TechnologyDto(2, "React", "Frontend");
 
-        ProjectFeatureDto feature1 = new ProjectFeatureDto(1L, "Login system", 1);
-        ProjectFeatureDto feature2 = new ProjectFeatureDto(2L, "Chat functionality", 2);
+        ProjectFeatureDto feature1 = new ProjectFeatureDto(1, "Login system", 1);
+        ProjectFeatureDto feature2 = new ProjectFeatureDto(2, "Chat functionality", 2);
 
-        ProjectScreenshotDto screenshot1 = new ProjectScreenshotDto(1L, "url1.png", "Home page", 1);
+        ProjectScreenshotDto screenshot1 = new ProjectScreenshotDto(1, "url1.png", "Home page", 1);
 
         // Preparing ProjectDto
         ProjectDto project = ProjectDto.builder()
-                .id(1L)
+                .id(1)
                 .title("Portfolio Website")
                 .shortDescription("My portfolio")
                 .fullDescription("Full description of the project")
@@ -60,7 +64,7 @@ class ProjectControllerTest {
         when(projectService.getAllProjects()).thenReturn(projectList);
 
         // Calling the controller method
-        List<ProjectDto> result = controller.getProjects();
+        List<ProjectDto> result = controller.getProjects(session);
 
         // check the result
         assertNotNull(result);
@@ -87,7 +91,7 @@ class ProjectControllerTest {
     void testGetProjects_EmptyList() {
         when(projectService.getAllProjects()).thenReturn(List.of());
 
-        List<ProjectDto> result = controller.getProjects();
+        List<ProjectDto> result = controller.getProjects(session);
 
         assertNotNull(result);
         assertTrue(result.isEmpty());

@@ -1,7 +1,7 @@
 package com.kashkina.portfolio.dto.projects;
 
 public record ProjectFeatureDto(
-        Long id,
+        Integer id,
         String description,
         Integer displayOrder ) {
 

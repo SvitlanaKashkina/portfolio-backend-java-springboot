@@ -2,7 +2,9 @@ package com.kashkina.portfolio.unit.controllers;
 
 import com.kashkina.portfolio.controller.HomeContentController;
 import com.kashkina.portfolio.entity.home.HomeContent;
+import com.kashkina.portfolio.kafka.producer.VisitEventProducer;
 import com.kashkina.portfolio.repository.home.HomeContentRepository;
+import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +17,13 @@ class HomeContentControllerTest {
 
     private HomeContentController controller;
     private HomeContentRepository repository;
+    private VisitEventProducer visitEventProducer;
+    private HttpSession session;
 
     @BeforeEach
     void setUp() {
         repository = mock(HomeContentRepository.class); // mock repository
-        controller = new HomeContentController(repository); // controller with mock repository
+        controller = new HomeContentController(repository, visitEventProducer); // controller with mock repository
     }
 
     @Test
@@ -34,10 +38,10 @@ class HomeContentControllerTest {
         content.setLinkedinUrl("https://linkedin.com/in/alice");
 
         // Setting up a mock: findById(1L) returns Optional.of(content)
-        when(repository.findById(1L)).thenReturn(Optional.of(content));
+        when(repository.findById(1)).thenReturn(Optional.of(content));
 
         // Calling the controller method
-        HomeContent result = controller.getHomeContent();
+        HomeContent result = controller.getHomeContent(session);
 
         // We check that the expected object was returned
         assertNotNull(result);
@@ -49,20 +53,20 @@ class HomeContentControllerTest {
         assertEquals("https://linkedin.com/in/alice", result.getLinkedinUrl());
 
         // Checking the repository call
-        verify(repository, times(1)).findById(1L);
+        verify(repository, times(1)).findById(1);
     }
 
     @Test
     void testGetHomeContent_NotFound() {
         // Setting up a mock: the repository returns an empty Optional
-        when(repository.findById(1L)).thenReturn(Optional.empty());
+        when(repository.findById(1)).thenReturn(Optional.empty());
 
         // Check that a RuntimeException is thrown
         RuntimeException exception = assertThrows(RuntimeException.class,
-                () -> controller.getHomeContent());
+                () -> controller.getHomeContent(session));
 
         assertEquals("Home content not found", exception.getMessage());
 
-        verify(repository, times(1)).findById(1L);
+        verify(repository, times(1)).findById(1);
     }
 }

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TechnicalSkillCategoryRepository extends JpaRepository<TechnicalSkillCategory, Long> {}
+public interface TechnicalSkillCategoryRepository extends JpaRepository<TechnicalSkillCategory, Integer> {}
 

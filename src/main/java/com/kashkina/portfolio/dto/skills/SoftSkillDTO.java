@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class SoftSkillDTO {
-    private Long id;
+    private Integer id;
     private String name;
     private Integer orderIndex;
 }

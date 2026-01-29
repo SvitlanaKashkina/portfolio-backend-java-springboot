@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TechStackItemRepository extends JpaRepository<TechStackItem, Long> {
-    List<TechStackItem> findByCategoryIdOrderByOrderIndexAsc(Long categoryId);
+public interface TechStackItemRepository extends JpaRepository<TechStackItem, Integer> {
+    List<TechStackItem> findByCategoryIdOrderByOrderIndexAsc(Integer categoryId);
 }
 

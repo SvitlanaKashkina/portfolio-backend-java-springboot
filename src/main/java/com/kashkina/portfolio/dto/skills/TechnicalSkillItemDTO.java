@@ -9,8 +9,8 @@ import lombok.*;
 @Builder
 public class TechnicalSkillItemDTO {
 
-    private Long id;
+    private Integer id;
     private String description;
     private Integer orderIndex;
-    private Long categoryId;
+    private Integer categoryId;
 }

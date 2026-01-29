@@ -3,7 +3,9 @@ package com.kashkina.portfolio.unit.controllers;
 import com.kashkina.portfolio.controller.AboutMeController;
 import com.kashkina.portfolio.dto.about.AboutMeDTO;
 import com.kashkina.portfolio.dto.about.AboutMeResponseDTO;
+import com.kashkina.portfolio.kafka.producer.VisitEventProducer;
 import com.kashkina.portfolio.service.AboutMeService;
+import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -15,11 +17,14 @@ class AboutMeControllerTest {
 
     private AboutMeController controller;
     private AboutMeService service; // controller dependency
+    private VisitEventProducer visitEventProducer;
+    private HttpSession session;
+
 
     @BeforeEach   // Runs before each test, prepares objects
     void setUp() {
         service = mock(AboutMeService.class); // creating a mock service
-        controller = new AboutMeController(service); // Create a controller with a mock service
+        controller = new AboutMeController(service, visitEventProducer); // Create a controller with a mock service
     }
 
     @Test
@@ -37,7 +42,7 @@ class AboutMeControllerTest {
         when(service.getAboutMeContent()).thenReturn(responseDTO);
 
         // Calling the controller method
-        AboutMeResponseDTO result = controller.getAboutMe();
+        AboutMeResponseDTO result = controller.getAboutMe(session);
 
         // check the result
         assertNotNull(result);

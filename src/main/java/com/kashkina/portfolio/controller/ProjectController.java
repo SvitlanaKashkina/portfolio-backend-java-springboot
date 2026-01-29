@@ -1,11 +1,16 @@
 package com.kashkina.portfolio.controller;
 
 import com.kashkina.portfolio.dto.projects.ProjectDto;
+import com.kashkina.portfolio.kafka.event.VisitEvent;
+import com.kashkina.portfolio.kafka.producer.VisitEventProducer;
 import com.kashkina.portfolio.service.ProjectService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +23,20 @@ public class ProjectController {
     private static final Logger log = LoggerFactory.getLogger(ProjectController.class);
 
     private final ProjectService projectService;
+    private final VisitEventProducer visitEventProducer; // Kafka Producer
 
     @GetMapping
-    public List<ProjectDto> getProjects() {
+    public List<ProjectDto> getProjects(HttpSession session) {
         log.info("GET /api/projects called");
+
+        // Send an event to Kafka on every page visit
+        visitEventProducer.sendVisitEvent(
+                new VisitEvent(
+                        session.getId(),           // unique session
+                        "/api/projects",
+                        LocalDateTime.now()
+                )
+        );
 
         List<ProjectDto> projects = projectService.getAllProjects();
 

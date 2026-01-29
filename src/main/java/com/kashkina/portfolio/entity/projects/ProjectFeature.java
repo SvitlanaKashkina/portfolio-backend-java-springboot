@@ -15,7 +15,7 @@ public class ProjectFeature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "description", columnDefinition = "TEXT", nullable = false)
     private String description;
