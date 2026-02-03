@@ -6,42 +6,41 @@ networks:
 
 services:
 
+  # ---------- PostgreSQL ----------
   postgres:
     image: postgres:17
     environment:
       POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
       POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       POSTGRES_DB: portfolio_db
-    ports:
-      - "5432:5432"
-    networks:
-      - backend_network
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
+    networks:
+      - backend_network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${SPRING_DATASOURCE_USERNAME}"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    ports:
-      - "8081:80"
+  # ---------- Redis ----------
+  redis:
+    image: redis:7
+    volumes:
+      - redis_data:/data
     networks:
       - backend_network
-    depends_on:
-      - postgres
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
+  # ---------- Zookeeper ----------
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
-    ports:
-      - "2181:2181"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -54,23 +53,18 @@ services:
       timeout: 5s
       retries: 5
 
+  # ---------- Kafka ----------
   kafka:
     image: confluentinc/cp-kafka:7.5.0
     depends_on:
       - zookeeper
-    ports:
-      - "9092:9092"
-      - "29092:29092"
     networks:
       - backend_network
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,OUTSIDE://0.0.0.0:29092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,OUTSIDE://host.docker.internal:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,OUTSIDE://kafka:29092
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       ALLOW_PLAINTEXT_LISTENER: "yes"
@@ -81,55 +75,33 @@ services:
       timeout: 5s
       retries: 5
 
-  redis:
-    image: redis:7
+  # ---------- Backend ----------
+  backend:
+    image: ksvitlana/portfolio-backend-backend:latest
+    env_file:
+      - ./portfolio-backend/.env
     ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
+      - "8080:8080"
     networks:
       - backend_network
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "redis-cli ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  backend:
-    build:
-      context: D:/MyPortfolioProjekt/portfolio-backend
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/portfolio_db
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-    networks:
-      - backend_network
     depends_on:
       - postgres
       - kafka
       - redis
-    restart: unless-stopped
 
+  # ---------- Frontend ----------
   frontend:
-    build:
-      context: D:/MyPortfolioProjekt/portfolio-frontend
-      dockerfile: Dockerfile
-      args:
-        VITE_API_URL: http://backend:8080/api
+    image: ksvitlana/portfolio-backend-frontend:latest
+    env_file:
+      - ./portfolio-frontend/.env
     ports:
       - "3000:80"
     networks:
       - backend_network
+    restart: unless-stopped
     depends_on:
       - backend
-    restart: unless-stopped
 
 volumes:
   postgres_data:
