@@ -27,19 +27,7 @@ public class ProjectController {
 
     @GetMapping
     public List<ProjectDto> getProjects(HttpSession session) {
-        log.info("GET /api/projects called");
-
-        // Send an event to Kafka on every page visit
-        VisitEvent event = new VisitEvent(
-                session.getId(),
-                "/api/projects",
-                LocalDateTime.now());
-        try {
-            visitEventProducer.sendVisitEvent(event);
-            log.info("VisitEvent sent for Project page: {}", event.getSessionId());
-        } catch (Exception e) {
-            log.error("Failed to send VisitEvent to Kafka: {}", e.getMessage(), e);
-        }
+        log.info("GET /API/PROJECTS CALLED");
 
         List<ProjectDto> projects = projectService.getAllProjects();
 
@@ -49,6 +37,15 @@ public class ProjectController {
             log.info("Returning {} projects successfully", projects.size());
             log.debug("Projects details: {}", projects);
         }
+
+        // Send an event to Kafka on every page visit
+        VisitEvent event = new VisitEvent(
+                session.getId(),
+                "/api/projects",
+                LocalDateTime.now()
+        );
+
+        visitEventProducer.sendVisitEventAsync(event);
 
         return projects;
     }

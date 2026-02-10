@@ -25,24 +25,19 @@ public class HomeController {
 
     @GetMapping("/home")
     public HomeContentDTO getHomeContent(HttpSession session) {
-        log.info("GET /api/home called");
+        log.info("GET /API/HOME CALLED");
+
+        HomeContentDTO contentDto = homeContentService.getHomeContentDTO();
+
+        log.info("HomeContentDTO FETCHED SUCCESSFULLY");
 
         // Sending an event to Kafka
         VisitEvent event = new VisitEvent(
                 session.getId(),
                 "/api/home",
-                LocalDateTime.now());
-        try {
-            visitEventProducer.sendVisitEvent(event);
-            log.info("VisitEvent sent for Home page: {}", event.getSessionId());
-        } catch (Exception e) {
-            log.error("Failed to send VisitEvent to Kafka: {}", e.getMessage(), e);
-        }
-
-        HomeContentDTO contentDto = homeContentService.getHomeContentDTO();
-
-        log.info("Returning HomeContentDTO successfully");
-        log.debug("HomeContentDTO: {}", contentDto);
+                LocalDateTime.now()
+        );
+        visitEventProducer.sendVisitEventAsync(event);
 
         return contentDto;
     }

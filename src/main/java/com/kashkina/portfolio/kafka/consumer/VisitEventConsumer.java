@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 @Slf4j
@@ -21,13 +22,17 @@ public class VisitEventConsumer {
     private final RedisTemplate<String, Object> redisTemplate;
 
     // In-memory (lives while the application is running)
-    private final Map<String, Integer> pageVisits = new HashMap<>();
-    private final Map<String, Set<String>> pageUniqueSessions = new HashMap<>();
-    private final Set<String> totalUniqueSessions = new HashSet<>();
+    private final Map<String, Integer> pageVisits = new ConcurrentHashMap<>();
+    private final Map<String, Set<String>> pageUniqueSessions = new ConcurrentHashMap<>();
+    private final Set<String> totalUniqueSessions = ConcurrentHashMap.newKeySet();
 
     private static final Duration TTL_30_DAYS = Duration.ofDays(30);
 
-    @KafkaListener(topics = "visit-events", groupId = "visit-group")
+    @KafkaListener(
+            topics = "visit-events",
+            groupId = "visit-group",
+            containerFactory = "kafkaListenerContainerFactory"
+    )
     public void consume(VisitEvent event) {
 
         log.info("📩 Received visit event from Kafka: {}", event);
@@ -46,10 +51,7 @@ public class VisitEventConsumer {
 
         // --- Unique page visitors ---
         pageUniqueSessions
-                .computeIfAbsent(page, k -> {
-                    log.debug("🆕 Creating new unique session set for page '{}'", page);
-                    return new HashSet<>();
-                })
+                .computeIfAbsent(page, k -> ConcurrentHashMap.newKeySet())
                 .add(sessionId);
 
         int uniquePageVisitors = pageUniqueSessions.get(page).size();
@@ -108,10 +110,8 @@ public class VisitEventConsumer {
 
             // Replace unique visitors set
             redisTemplate.delete(uniqueKey);
-
             redisTemplate.opsForSet()
                     .add(uniqueKey, pageUniqueSessions.get(page).toArray());
-
             redisTemplate.expire(uniqueKey, TTL_30_DAYS);
 
             log.debug(

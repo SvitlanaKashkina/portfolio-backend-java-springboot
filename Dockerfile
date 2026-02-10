@@ -1,5 +1,5 @@
 # Using JDK 17 to build and run Spring Boot
-FROM openjdk:20-ea-1-jdk
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
 # Copy JAR from target

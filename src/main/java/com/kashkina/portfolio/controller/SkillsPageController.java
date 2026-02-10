@@ -29,18 +29,6 @@ public class SkillsPageController {
     public SkillsPageDTO getSkillsPage(HttpSession session) {
         log.info("GET /api/skills called");
 
-        // Send an event to Kafka on every page visit
-        VisitEvent event = new VisitEvent(
-                session.getId(),
-                "/api/skills",
-                LocalDateTime.now());
-        try {
-            visitEventProducer.sendVisitEvent(event);
-            log.info("VisitEvent sent for Skills page: {}", event.getSessionId());
-        } catch (Exception e) {
-            log.error("Failed to send VisitEvent to Kafka: {}", e.getMessage(), e);
-        }
-
         SkillsPageDTO skillsPage = skillsPageService.getAllSkills();
 
         if (skillsPage.getTechStack().isEmpty() &&
@@ -51,6 +39,14 @@ public class SkillsPageController {
             log.info("Returning skills page successfully");
             log.debug("SkillsPageDTO details: {}", skillsPage);
         }
+
+        // Send an event to Kafka on every page visit
+        VisitEvent event = new VisitEvent(
+                session.getId(),
+                "/api/skills",
+                LocalDateTime.now()
+        );
+        visitEventProducer.sendVisitEventAsync(event);
 
         return skillsPage;
     }

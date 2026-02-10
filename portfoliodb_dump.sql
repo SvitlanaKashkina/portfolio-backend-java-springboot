@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict M8ASBBbVZ3xAUS4IHKkPZd9OPWdpU15zY512G6ZcJefAWuFGluntWQeyPbTk9fb
+\restrict xcvVhA13rdrlKHdMlfSt2hjbdfRhFvfChaHwDPyjFq6cFftSmdL9i1HRhkWMGuS
 
--- Dumped from database version 17.6
--- Dumped by pg_dump version 17.6
+-- Dumped from database version 17.7 (Debian 17.7-3.pgdg13+1)
+-- Dumped by pg_dump version 17.7 (Debian 17.7-3.pgdg13+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,7 +24,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: about_me; Type: TABLE; Schema: public; Owner: skashkina
+-- Name: about_me; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.about_me (
@@ -35,10 +35,8 @@ CREATE TABLE public.about_me (
 );
 
 
-ALTER TABLE public.about_me OWNER TO skashkina;
-
 --
--- Name: about_me_id_seq; Type: SEQUENCE; Schema: public; Owner: skashkina
+-- Name: about_me_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.about_me_id_seq
@@ -49,17 +47,15 @@ CREATE SEQUENCE public.about_me_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.about_me_id_seq OWNER TO skashkina;
-
 --
--- Name: about_me_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: skashkina
+-- Name: about_me_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.about_me_id_seq OWNED BY public.about_me.id;
 
 
 --
--- Name: certificates; Type: TABLE; Schema: public; Owner: postgres
+-- Name: certificates; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.certificates (
@@ -71,10 +67,8 @@ CREATE TABLE public.certificates (
 );
 
 
-ALTER TABLE public.certificates OWNER TO postgres;
-
 --
--- Name: certificates_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: certificates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.certificates_id_seq
@@ -85,17 +79,15 @@ CREATE SEQUENCE public.certificates_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.certificates_id_seq OWNER TO postgres;
-
 --
--- Name: certificates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: certificates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.certificates_id_seq OWNED BY public.certificates.id;
 
 
 --
--- Name: contact_messages; Type: TABLE; Schema: public; Owner: postgres
+-- Name: contact_messages; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.contact_messages (
@@ -110,10 +102,8 @@ CREATE TABLE public.contact_messages (
 );
 
 
-ALTER TABLE public.contact_messages OWNER TO postgres;
-
 --
--- Name: contact_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: contact_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.contact_messages_id_seq
@@ -125,17 +115,15 @@ CREATE SEQUENCE public.contact_messages_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.contact_messages_id_seq OWNER TO postgres;
-
 --
--- Name: contact_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: contact_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.contact_messages_id_seq OWNED BY public.contact_messages.id;
 
 
 --
--- Name: home_content; Type: TABLE; Schema: public; Owner: postgres
+-- Name: home_content; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.home_content (
@@ -151,10 +139,8 @@ CREATE TABLE public.home_content (
 );
 
 
-ALTER TABLE public.home_content OWNER TO postgres;
-
 --
--- Name: home_content_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: home_content_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.home_content_id_seq
@@ -166,17 +152,15 @@ CREATE SEQUENCE public.home_content_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.home_content_id_seq OWNER TO postgres;
-
 --
--- Name: home_content_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: home_content_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.home_content_id_seq OWNED BY public.home_content.id;
 
 
 --
--- Name: project_features; Type: TABLE; Schema: public; Owner: postgres
+-- Name: project_features; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.project_features (
@@ -187,10 +171,8 @@ CREATE TABLE public.project_features (
 );
 
 
-ALTER TABLE public.project_features OWNER TO postgres;
-
 --
--- Name: project_features_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: project_features_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.project_features_id_seq
@@ -201,20 +183,18 @@ CREATE SEQUENCE public.project_features_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.project_features_id_seq OWNER TO postgres;
-
 --
--- Name: project_features_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: project_features_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.project_features_id_seq OWNED BY public.project_features.id;
 
 
 --
--- Name: project_screenshots; Type: TABLE; Schema: public; Owner: postgres
+-- Name: project_foto; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.project_screenshots (
+CREATE TABLE public.project_foto (
     id bigint NOT NULL,
     project_id bigint NOT NULL,
     image_url character varying(1000) NOT NULL,
@@ -223,10 +203,8 @@ CREATE TABLE public.project_screenshots (
 );
 
 
-ALTER TABLE public.project_screenshots OWNER TO postgres;
-
 --
--- Name: project_screenshots_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: project_screenshots_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.project_screenshots_id_seq
@@ -237,17 +215,15 @@ CREATE SEQUENCE public.project_screenshots_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.project_screenshots_id_seq OWNER TO postgres;
-
 --
--- Name: project_screenshots_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: project_screenshots_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.project_screenshots_id_seq OWNED BY public.project_screenshots.id;
+ALTER SEQUENCE public.project_screenshots_id_seq OWNED BY public.project_foto.id;
 
 
 --
--- Name: project_technologies; Type: TABLE; Schema: public; Owner: postgres
+-- Name: project_technologies; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.project_technologies (
@@ -256,10 +232,8 @@ CREATE TABLE public.project_technologies (
 );
 
 
-ALTER TABLE public.project_technologies OWNER TO postgres;
-
 --
--- Name: projects; Type: TABLE; Schema: public; Owner: postgres
+-- Name: projects; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.projects (
@@ -278,10 +252,8 @@ CREATE TABLE public.projects (
 );
 
 
-ALTER TABLE public.projects OWNER TO postgres;
-
 --
--- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.projects_id_seq
@@ -292,17 +264,15 @@ CREATE SEQUENCE public.projects_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.projects_id_seq OWNER TO postgres;
-
 --
--- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.projects_id_seq OWNED BY public.projects.id;
 
 
 --
--- Name: soft_skill; Type: TABLE; Schema: public; Owner: postgres
+-- Name: soft_skill; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.soft_skill (
@@ -312,10 +282,8 @@ CREATE TABLE public.soft_skill (
 );
 
 
-ALTER TABLE public.soft_skill OWNER TO postgres;
-
 --
--- Name: soft_skill_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: soft_skill_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.soft_skill_id_seq
@@ -327,17 +295,15 @@ CREATE SEQUENCE public.soft_skill_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.soft_skill_id_seq OWNER TO postgres;
-
 --
--- Name: soft_skill_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: soft_skill_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.soft_skill_id_seq OWNED BY public.soft_skill.id;
 
 
 --
--- Name: tech_stack_category; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tech_stack_category; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.tech_stack_category (
@@ -347,10 +313,8 @@ CREATE TABLE public.tech_stack_category (
 );
 
 
-ALTER TABLE public.tech_stack_category OWNER TO postgres;
-
 --
--- Name: tech_stack_category_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: tech_stack_category_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.tech_stack_category_id_seq
@@ -362,17 +326,15 @@ CREATE SEQUENCE public.tech_stack_category_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.tech_stack_category_id_seq OWNER TO postgres;
-
 --
--- Name: tech_stack_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: tech_stack_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.tech_stack_category_id_seq OWNED BY public.tech_stack_category.id;
 
 
 --
--- Name: tech_stack_item; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tech_stack_item; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.tech_stack_item (
@@ -383,10 +345,8 @@ CREATE TABLE public.tech_stack_item (
 );
 
 
-ALTER TABLE public.tech_stack_item OWNER TO postgres;
-
 --
--- Name: tech_stack_item_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: tech_stack_item_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.tech_stack_item_id_seq
@@ -398,17 +358,15 @@ CREATE SEQUENCE public.tech_stack_item_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.tech_stack_item_id_seq OWNER TO postgres;
-
 --
--- Name: tech_stack_item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: tech_stack_item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.tech_stack_item_id_seq OWNED BY public.tech_stack_item.id;
 
 
 --
--- Name: technical_skill_category; Type: TABLE; Schema: public; Owner: postgres
+-- Name: technical_skill_category; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.technical_skill_category (
@@ -418,10 +376,8 @@ CREATE TABLE public.technical_skill_category (
 );
 
 
-ALTER TABLE public.technical_skill_category OWNER TO postgres;
-
 --
--- Name: technical_skill_category_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: technical_skill_category_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.technical_skill_category_id_seq
@@ -433,17 +389,15 @@ CREATE SEQUENCE public.technical_skill_category_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.technical_skill_category_id_seq OWNER TO postgres;
-
 --
--- Name: technical_skill_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: technical_skill_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.technical_skill_category_id_seq OWNED BY public.technical_skill_category.id;
 
 
 --
--- Name: technical_skill_item; Type: TABLE; Schema: public; Owner: skashkina
+-- Name: technical_skill_item; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.technical_skill_item (
@@ -454,10 +408,8 @@ CREATE TABLE public.technical_skill_item (
 );
 
 
-ALTER TABLE public.technical_skill_item OWNER TO skashkina;
-
 --
--- Name: technical_skill_item_id_seq; Type: SEQUENCE; Schema: public; Owner: skashkina
+-- Name: technical_skill_item_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.technical_skill_item_id_seq
@@ -469,17 +421,15 @@ CREATE SEQUENCE public.technical_skill_item_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.technical_skill_item_id_seq OWNER TO skashkina;
-
 --
--- Name: technical_skill_item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: skashkina
+-- Name: technical_skill_item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.technical_skill_item_id_seq OWNED BY public.technical_skill_item.id;
 
 
 --
--- Name: technologies; Type: TABLE; Schema: public; Owner: skashkina
+-- Name: technologies; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.technologies (
@@ -489,10 +439,8 @@ CREATE TABLE public.technologies (
 );
 
 
-ALTER TABLE public.technologies OWNER TO skashkina;
-
 --
--- Name: technologies_id_seq; Type: SEQUENCE; Schema: public; Owner: skashkina
+-- Name: technologies_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.technologies_id_seq
@@ -503,108 +451,106 @@ CREATE SEQUENCE public.technologies_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.technologies_id_seq OWNER TO skashkina;
-
 --
--- Name: technologies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: skashkina
+-- Name: technologies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.technologies_id_seq OWNED BY public.technologies.id;
 
 
 --
--- Name: about_me id; Type: DEFAULT; Schema: public; Owner: skashkina
+-- Name: about_me id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.about_me ALTER COLUMN id SET DEFAULT nextval('public.about_me_id_seq'::regclass);
 
 
 --
--- Name: certificates id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: certificates id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.certificates ALTER COLUMN id SET DEFAULT nextval('public.certificates_id_seq'::regclass);
 
 
 --
--- Name: contact_messages id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: contact_messages id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.contact_messages ALTER COLUMN id SET DEFAULT nextval('public.contact_messages_id_seq'::regclass);
 
 
 --
--- Name: home_content id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: home_content id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.home_content ALTER COLUMN id SET DEFAULT nextval('public.home_content_id_seq'::regclass);
 
 
 --
--- Name: project_features id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: project_features id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.project_features ALTER COLUMN id SET DEFAULT nextval('public.project_features_id_seq'::regclass);
 
 
 --
--- Name: project_screenshots id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: project_foto id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.project_screenshots ALTER COLUMN id SET DEFAULT nextval('public.project_screenshots_id_seq'::regclass);
+ALTER TABLE ONLY public.project_foto ALTER COLUMN id SET DEFAULT nextval('public.project_screenshots_id_seq'::regclass);
 
 
 --
--- Name: projects id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: projects id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.projects_id_seq'::regclass);
 
 
 --
--- Name: soft_skill id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: soft_skill id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.soft_skill ALTER COLUMN id SET DEFAULT nextval('public.soft_skill_id_seq'::regclass);
 
 
 --
--- Name: tech_stack_category id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: tech_stack_category id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.tech_stack_category ALTER COLUMN id SET DEFAULT nextval('public.tech_stack_category_id_seq'::regclass);
 
 
 --
--- Name: tech_stack_item id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: tech_stack_item id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.tech_stack_item ALTER COLUMN id SET DEFAULT nextval('public.tech_stack_item_id_seq'::regclass);
 
 
 --
--- Name: technical_skill_category id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: technical_skill_category id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.technical_skill_category ALTER COLUMN id SET DEFAULT nextval('public.technical_skill_category_id_seq'::regclass);
 
 
 --
--- Name: technical_skill_item id; Type: DEFAULT; Schema: public; Owner: skashkina
+-- Name: technical_skill_item id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.technical_skill_item ALTER COLUMN id SET DEFAULT nextval('public.technical_skill_item_id_seq'::regclass);
 
 
 --
--- Name: technologies id; Type: DEFAULT; Schema: public; Owner: skashkina
+-- Name: technologies id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.technologies ALTER COLUMN id SET DEFAULT nextval('public.technologies_id_seq'::regclass);
 
 
 --
--- Data for Name: about_me; Type: TABLE DATA; Schema: public; Owner: skashkina
+-- Data for Name: about_me; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.about_me (id, section_key, title, content) FROM stdin;
@@ -617,7 +563,7 @@ COPY public.about_me (id, section_key, title, content) FROM stdin;
 
 
 --
--- Data for Name: certificates; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: certificates; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.certificates (id, name, issuer, year, display_order) FROM stdin;
@@ -633,7 +579,7 @@ COPY public.certificates (id, name, issuer, year, display_order) FROM stdin;
 
 
 --
--- Data for Name: contact_messages; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: contact_messages; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.contact_messages (id, name, email, subject, message, phone, consent, created_at) FROM stdin;
@@ -668,11 +614,12 @@ COPY public.contact_messages (id, name, email, subject, message, phone, consent,
 47	Svitlana Svitlana	k.svitlana@web.de	test340	fddh		t	\N
 48	Svitlana Kashkina	k.svitlana@web.de	test42	fdhdhduzh	017674576176	t	\N
 49	Svitlana Svitlana	sv4074@gmail.com	test44	gjffkj	017674576176	t	\N
+50	Svitlana Kashkina	k.svitlana@web.de	test3	sdafsadfswgf	017674576176	t	\N
 \.
 
 
 --
--- Data for Name: home_content; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: home_content; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.home_content (id, full_name, role_title, role_type, short_bio, github_url, linkedin_url, created_at, updated_at) FROM stdin;
@@ -681,7 +628,7 @@ COPY public.home_content (id, full_name, role_title, role_type, short_bio, githu
 
 
 --
--- Data for Name: project_features; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: project_features; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.project_features (id, project_id, description, display_order) FROM stdin;
@@ -698,18 +645,23 @@ COPY public.project_features (id, project_id, description, display_order) FROM s
 
 
 --
--- Data for Name: project_screenshots; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: project_foto; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.project_screenshots (id, project_id, image_url, alt_text, display_order) FROM stdin;
-12	1	/images/projects/Auth.png	Login Screen	1
-13	1	/images/projects/Chat.png	Chat Screen	2
-14	1	/images/projects/Feedback.png	Feedback Screen	3
+COPY public.project_foto (id, project_id, image_url, alt_text, display_order) FROM stdin;
+27	1	https://portfolio-kashkina-media-storage.s3.eu-north-1.amazonaws.com/Foto+S3+Cloud/Auth.png	Projects - Auth	2
+28	1	https://portfolio-kashkina-media-storage.s3.eu-north-1.amazonaws.com/Foto+S3+Cloud/Chat.png	Projects - Chat	3
+29	1	https://portfolio-kashkina-media-storage.s3.eu-north-1.amazonaws.com/Foto+S3+Cloud/Feedback.png	Projects - Feedback	4
+31	1	https://portfolio-kashkina-media-storage.s3.eu-north-1.amazonaws.com/Foto+S3+Cloud/foto.jpg	About Me - Lebenslauf Foto	1
+32	1	https://portfolio-kashkina-media-storage.s3.eu-north-1.amazonaws.com/Foto+S3+Cloud/icons.png	About Me - Icons	2
+33	1	https://portfolio-kashkina-media-storage.s3.eu-north-1.amazonaws.com/Foto+S3+Cloud/tenis.PNG	Projects - Tenis	1
+34	1	https://portfolio-kashkina-media-storage.s3.eu-north-1.amazonaws.com/Foto+S3+Cloud/my-video.mp4	Home - Video	1
+35	1	https://portfolio-kashkina-media-storage.s3.eu-north-1.amazonaws.com/Foto+S3+Cloud/Svitlana_Kashkina_CV.pdf	CV - PDF	1
 \.
 
 
 --
--- Data for Name: project_technologies; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: project_technologies; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.project_technologies (project_id, technology_id) FROM stdin;
@@ -732,7 +684,7 @@ COPY public.project_technologies (project_id, technology_id) FROM stdin;
 
 
 --
--- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.projects (id, title, short_description, full_description, architecture_description, role_description, lessons_learned, status, end_date, github_url, created_at, updated_at) FROM stdin;
@@ -741,7 +693,7 @@ COPY public.projects (id, title, short_description, full_description, architectu
 
 
 --
--- Data for Name: soft_skill; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: soft_skill; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.soft_skill (id, name, order_index) FROM stdin;
@@ -755,7 +707,7 @@ COPY public.soft_skill (id, name, order_index) FROM stdin;
 
 
 --
--- Data for Name: tech_stack_category; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: tech_stack_category; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.tech_stack_category (id, name, order_index) FROM stdin;
@@ -771,7 +723,7 @@ COPY public.tech_stack_category (id, name, order_index) FROM stdin;
 
 
 --
--- Data for Name: tech_stack_item; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: tech_stack_item; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.tech_stack_item (id, name, category_id, order_index) FROM stdin;
@@ -802,11 +754,12 @@ COPY public.tech_stack_item (id, name, category_id, order_index) FROM stdin;
 26	WebSockets	8	2
 27	Expo Notifications	8	3
 28	Lombok	2	8
+29	Redis	3	3
 \.
 
 
 --
--- Data for Name: technical_skill_category; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: technical_skill_category; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.technical_skill_category (id, name, order_index) FROM stdin;
@@ -821,7 +774,7 @@ COPY public.technical_skill_category (id, name, order_index) FROM stdin;
 
 
 --
--- Data for Name: technical_skill_item; Type: TABLE DATA; Schema: public; Owner: skashkina
+-- Data for Name: technical_skill_item; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.technical_skill_item (id, category_id, description, order_index) FROM stdin;
@@ -860,7 +813,7 @@ COPY public.technical_skill_item (id, category_id, description, order_index) FRO
 
 
 --
--- Data for Name: technologies; Type: TABLE DATA; Schema: public; Owner: skashkina
+-- Data for Name: technologies; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.technologies (id, name, category) FROM stdin;
@@ -883,98 +836,98 @@ COPY public.technologies (id, name, category) FROM stdin;
 
 
 --
--- Name: about_me_id_seq; Type: SEQUENCE SET; Schema: public; Owner: skashkina
+-- Name: about_me_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.about_me_id_seq', 5, true);
 
 
 --
--- Name: certificates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: certificates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.certificates_id_seq', 8, true);
 
 
 --
--- Name: contact_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: contact_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.contact_messages_id_seq', 49, true);
+SELECT pg_catalog.setval('public.contact_messages_id_seq', 50, true);
 
 
 --
--- Name: home_content_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: home_content_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.home_content_id_seq', 1, true);
 
 
 --
--- Name: project_features_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: project_features_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.project_features_id_seq', 27, true);
 
 
 --
--- Name: project_screenshots_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: project_screenshots_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.project_screenshots_id_seq', 15, true);
+SELECT pg_catalog.setval('public.project_screenshots_id_seq', 35, true);
 
 
 --
--- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.projects_id_seq', 1, true);
 
 
 --
--- Name: soft_skill_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: soft_skill_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.soft_skill_id_seq', 13, true);
 
 
 --
--- Name: tech_stack_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: tech_stack_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.tech_stack_category_id_seq', 8, true);
 
 
 --
--- Name: tech_stack_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: tech_stack_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.tech_stack_item_id_seq', 27, true);
 
 
 --
--- Name: technical_skill_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: technical_skill_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.technical_skill_category_id_seq', 7, true);
 
 
 --
--- Name: technical_skill_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: skashkina
+-- Name: technical_skill_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.technical_skill_item_id_seq', 31, true);
 
 
 --
--- Name: technologies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: skashkina
+-- Name: technologies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.technologies_id_seq', 15, true);
 
 
 --
--- Name: about_me about_me_pkey; Type: CONSTRAINT; Schema: public; Owner: skashkina
+-- Name: about_me about_me_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.about_me
@@ -982,7 +935,7 @@ ALTER TABLE ONLY public.about_me
 
 
 --
--- Name: about_me about_me_section_key_key; Type: CONSTRAINT; Schema: public; Owner: skashkina
+-- Name: about_me about_me_section_key_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.about_me
@@ -990,7 +943,7 @@ ALTER TABLE ONLY public.about_me
 
 
 --
--- Name: certificates certificates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: certificates certificates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.certificates
@@ -998,7 +951,7 @@ ALTER TABLE ONLY public.certificates
 
 
 --
--- Name: contact_messages contact_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: contact_messages contact_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.contact_messages
@@ -1006,7 +959,7 @@ ALTER TABLE ONLY public.contact_messages
 
 
 --
--- Name: home_content home_content_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: home_content home_content_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.home_content
@@ -1014,7 +967,7 @@ ALTER TABLE ONLY public.home_content
 
 
 --
--- Name: project_features project_features_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: project_features project_features_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.project_features
@@ -1022,15 +975,15 @@ ALTER TABLE ONLY public.project_features
 
 
 --
--- Name: project_screenshots project_screenshots_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: project_foto project_screenshots_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.project_screenshots
+ALTER TABLE ONLY public.project_foto
     ADD CONSTRAINT project_screenshots_pkey PRIMARY KEY (id);
 
 
 --
--- Name: project_technologies project_technologies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: project_technologies project_technologies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.project_technologies
@@ -1038,7 +991,7 @@ ALTER TABLE ONLY public.project_technologies
 
 
 --
--- Name: projects projects_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: projects projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.projects
@@ -1046,7 +999,7 @@ ALTER TABLE ONLY public.projects
 
 
 --
--- Name: soft_skill soft_skill_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: soft_skill soft_skill_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.soft_skill
@@ -1054,7 +1007,7 @@ ALTER TABLE ONLY public.soft_skill
 
 
 --
--- Name: tech_stack_category tech_stack_category_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tech_stack_category tech_stack_category_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.tech_stack_category
@@ -1062,7 +1015,7 @@ ALTER TABLE ONLY public.tech_stack_category
 
 
 --
--- Name: tech_stack_item tech_stack_item_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tech_stack_item tech_stack_item_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.tech_stack_item
@@ -1070,7 +1023,7 @@ ALTER TABLE ONLY public.tech_stack_item
 
 
 --
--- Name: technical_skill_category technical_skill_category_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: technical_skill_category technical_skill_category_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.technical_skill_category
@@ -1078,7 +1031,7 @@ ALTER TABLE ONLY public.technical_skill_category
 
 
 --
--- Name: technical_skill_item technical_skill_item_pkey; Type: CONSTRAINT; Schema: public; Owner: skashkina
+-- Name: technical_skill_item technical_skill_item_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.technical_skill_item
@@ -1086,7 +1039,7 @@ ALTER TABLE ONLY public.technical_skill_item
 
 
 --
--- Name: technologies technologies_name_key; Type: CONSTRAINT; Schema: public; Owner: skashkina
+-- Name: technologies technologies_name_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.technologies
@@ -1094,7 +1047,7 @@ ALTER TABLE ONLY public.technologies
 
 
 --
--- Name: technologies technologies_pkey; Type: CONSTRAINT; Schema: public; Owner: skashkina
+-- Name: technologies technologies_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.technologies
@@ -1102,7 +1055,7 @@ ALTER TABLE ONLY public.technologies
 
 
 --
--- Name: project_technologies fk_project; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: project_technologies fk_project; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.project_technologies
@@ -1110,7 +1063,7 @@ ALTER TABLE ONLY public.project_technologies
 
 
 --
--- Name: project_features fk_project_feature; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: project_features fk_project_feature; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.project_features
@@ -1118,15 +1071,15 @@ ALTER TABLE ONLY public.project_features
 
 
 --
--- Name: project_screenshots fk_project_screenshot; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: project_foto fk_project_screenshot; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.project_screenshots
+ALTER TABLE ONLY public.project_foto
     ADD CONSTRAINT fk_project_screenshot FOREIGN KEY (project_id) REFERENCES public.projects(id) ON DELETE CASCADE;
 
 
 --
--- Name: tech_stack_item fk_tech_stack_category; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tech_stack_item fk_tech_stack_category; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.tech_stack_item
@@ -1134,7 +1087,7 @@ ALTER TABLE ONLY public.tech_stack_item
 
 
 --
--- Name: technical_skill_item fk_technical_skill_category; Type: FK CONSTRAINT; Schema: public; Owner: skashkina
+-- Name: technical_skill_item fk_technical_skill_category; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.technical_skill_item
@@ -1142,7 +1095,7 @@ ALTER TABLE ONLY public.technical_skill_item
 
 
 --
--- Name: project_technologies fk_technology; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: project_technologies fk_technology; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.project_technologies
@@ -1150,162 +1103,8 @@ ALTER TABLE ONLY public.project_technologies
 
 
 --
--- Name: TABLE certificates; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.certificates TO skashkina;
-
-
---
--- Name: SEQUENCE certificates_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.certificates_id_seq TO skashkina;
-
-
---
--- Name: TABLE contact_messages; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.contact_messages TO skashkina;
-
-
---
--- Name: SEQUENCE contact_messages_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.contact_messages_id_seq TO skashkina;
-
-
---
--- Name: TABLE home_content; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.home_content TO skashkina;
-
-
---
--- Name: SEQUENCE home_content_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.home_content_id_seq TO skashkina;
-
-
---
--- Name: TABLE project_features; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.project_features TO skashkina;
-
-
---
--- Name: SEQUENCE project_features_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.project_features_id_seq TO skashkina;
-
-
---
--- Name: TABLE project_screenshots; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.project_screenshots TO skashkina;
-
-
---
--- Name: SEQUENCE project_screenshots_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.project_screenshots_id_seq TO skashkina;
-
-
---
--- Name: TABLE project_technologies; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.project_technologies TO skashkina;
-
-
---
--- Name: TABLE projects; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.projects TO skashkina;
-
-
---
--- Name: SEQUENCE projects_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.projects_id_seq TO skashkina;
-
-
---
--- Name: TABLE soft_skill; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.soft_skill TO skashkina;
-
-
---
--- Name: SEQUENCE soft_skill_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.soft_skill_id_seq TO skashkina;
-
-
---
--- Name: TABLE tech_stack_category; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.tech_stack_category TO skashkina;
-
-
---
--- Name: SEQUENCE tech_stack_category_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.tech_stack_category_id_seq TO skashkina;
-
-
---
--- Name: TABLE tech_stack_item; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.tech_stack_item TO skashkina;
-
-
---
--- Name: SEQUENCE tech_stack_item_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.tech_stack_item_id_seq TO skashkina;
-
-
---
--- Name: TABLE technical_skill_category; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.technical_skill_category TO skashkina;
-
-
---
--- Name: SEQUENCE technical_skill_category_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.technical_skill_category_id_seq TO skashkina;
-
-
---
--- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: public; Owner: postgres
---
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES TO skashkina;
-
-
---
 -- PostgreSQL database dump complete
 --
 
-\unrestrict M8ASBBbVZ3xAUS4IHKkPZd9OPWdpU15zY512G6ZcJefAWuFGluntWQeyPbTk9fb
+\unrestrict xcvVhA13rdrlKHdMlfSt2hjbdfRhFvfChaHwDPyjFq6cFftSmdL9i1HRhkWMGuS
 

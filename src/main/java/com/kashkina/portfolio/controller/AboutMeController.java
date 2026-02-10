@@ -24,21 +24,19 @@ public class AboutMeController {
 
     @GetMapping
     public AboutMeResponseDTO getAboutMe(HttpSession session) {
+        log.info("GET /API/ABOUT CALLED");
 
-        log.info("GET /api/about called");
+        AboutMeResponseDTO response = service.getAboutMeContent();
 
         // Sending an event to Kafka
         VisitEvent event = new VisitEvent(
                 session.getId(),
                 "/api/about",
-                LocalDateTime.now());
-        try {
-            visitEventProducer.sendVisitEvent(event);
-            log.info("VisitEvent sent for AboutMe page: {}", event.getSessionId());
-        } catch (Exception e) {
-            log.error("Failed to send VisitEvent to Kafka: {}", e.getMessage(), e);
-        }
+                LocalDateTime.now()
+        );
 
-        return service.getAboutMeContent();
+        visitEventProducer.sendVisitEventAsync(event);
+
+        return response;
     }
 }

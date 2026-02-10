@@ -12,15 +12,31 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
-
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.beans.factory.annotation.Value;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 @EnableKafka
 @Configuration
+@EnableAsync
 public class KafkaConfig {
 
-    private final String bootstrapServers = "localhost:29092";
+    @Value("${spring.kafka.bootstrap-servers}")
+    private String bootstrapServers;
+
+    @Bean(name = "taskExecutor")
+    public Executor taskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(2);
+        executor.setMaxPoolSize(5);
+        executor.setQueueCapacity(100);
+        executor.setThreadNamePrefix("KafkaAsync-");
+        executor.initialize();
+        return executor;
+    }
 
     // ---------------- Producer ----------------
     @Bean
@@ -44,10 +60,12 @@ public class KafkaConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "visit-group");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JacksonDeserializer.class);
-        return new DefaultKafkaConsumerFactory<>(props,
+
+        return new DefaultKafkaConsumerFactory<>(
+                props,
                 new StringDeserializer(),
-                new JacksonDeserializer<>(VisitEvent.class));
+                new JacksonDeserializer<>(VisitEvent.class)
+        );
     }
 
     @Bean
